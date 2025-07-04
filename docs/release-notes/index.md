@@ -116,14 +116,18 @@ Data streams:
 Downsampling:
 * Downsampling does not consider passthrough fields as dimensions [#127752](https://github.com/elastic/elasticsearch/pull/127752) (issue: [#125156](https://github.com/elastic/elasticsearch/issues/125156))
 
-ES|QL:
+**ES|QL:**
+:::{dropdown} Resolves type conflict handling for union fields in CCS
+Mismatched field types in CCS queries caused evaluation functions such as `FROM *:remote-indices | EVAL port = TO_INT(port)` to return all null values when accessing remote indices. This happened due to incorrect converter resolution logic. [#128111](https://github.com/elastic/elasticsearch/pull/128111) resolves this issue and ensures CCS can correctly evaluate union fields with type mismatches.
+:::
+
+* Fix union types in CCS [#128111](https://github.com/elastic/elasticsearch/pull/128111)
 * Consider inlinestats when having `field_caps` check for field names [#127564](https://github.com/elastic/elasticsearch/pull/127564) (issue: [#127236](https://github.com/elastic/elasticsearch/issues/127236))
 * Don't push down filters on the right hand side of an inlinejoin [#127383](https://github.com/elastic/elasticsearch/pull/127383)
 * ESQL: Avoid unintended attribute removal [#127563](https://github.com/elastic/elasticsearch/pull/127563) (issue: [#127468](https://github.com/elastic/elasticsearch/issues/127468))
 * ESQL: Fix alias removal in regex extraction with JOIN [#127687](https://github.com/elastic/elasticsearch/pull/127687) (issue: [#127467](https://github.com/elastic/elasticsearch/issues/127467))
 * ESQL: Keep `DROP` attributes when resolving field names [#127009](https://github.com/elastic/elasticsearch/pull/127009) (issue: [#126418](https://github.com/elastic/elasticsearch/issues/126418))
 * Ensure ordinal builder emit ordinal blocks [#127949](https://github.com/elastic/elasticsearch/pull/127949)
-* Fix union types in CCS [#128111](https://github.com/elastic/elasticsearch/pull/128111)
 * Fix validation NPE in Enrich and add extra @Nullable annotations [#128260](https://github.com/elastic/elasticsearch/pull/128260) (issues: [#126297](https://github.com/elastic/elasticsearch/issues/126297), [#126253](https://github.com/elastic/elasticsearch/issues/126253))
 
 Geo:
